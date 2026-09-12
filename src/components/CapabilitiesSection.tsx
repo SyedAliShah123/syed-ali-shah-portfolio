@@ -81,10 +81,11 @@ export const CapabilitiesSection: React.FC = () => {
             <button
               onClick={scrollToContact}
               onMouseEnter={() => soundFX.playPop()}
-              className="w-full py-3 px-4 rounded-full bg-[#0A0A0A] text-white hover:bg-neutral-800 dark:bg-[#E0FF00] dark:text-black dark:hover:bg-[#E0FF00]/90 font-syne text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+              className="w-full py-3.5 px-4 rounded-full bg-[#0A0A0A] text-white hover:bg-neutral-800 dark:bg-[#E0FF00] dark:text-black dark:hover:bg-[#E0FF00]/90 font-syne text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs overflow-hidden"
             >
-              <span>Discuss Platform Setup</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Discuss Platform Setup</span>
+              <span className="sm:hidden">Discuss Platform</span>
+              <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
             </button>
           </div>
 

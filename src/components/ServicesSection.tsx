@@ -169,12 +169,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 
                       <button
                         onClick={() => handleHireClick(svc.title)}
-                        className="w-full py-3 px-4 rounded-full bg-[#0A0A0A] text-white hover:bg-neutral-800 dark:bg-[#E0FF00] dark:text-black dark:hover:bg-[#E0FF00]/90 font-syne text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs active:scale-[0.99]"
+                        className="w-full py-3.5 px-4 rounded-full bg-[#0A0A0A] text-white hover:bg-neutral-800 dark:bg-[#E0FF00] dark:text-black dark:hover:bg-[#E0FF00]/90 font-syne text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs active:scale-[0.99] text-center overflow-hidden"
                       >
                         <Sparkles className="w-3.5 h-3.5 shrink-0 text-white dark:text-black" />
-                        <span className="whitespace-nowrap">
-                          Inquire for {svc.title} →
-                        </span>
+                        <span className="hidden lg:inline">Inquire for {svc.title} →</span>
+                        <span className="hidden sm:inline lg:hidden">Inquire for This Service →</span>
+                        <span className="sm:hidden">Inquire for Service →</span>
                       </button>
                     </div>
                   </div>
