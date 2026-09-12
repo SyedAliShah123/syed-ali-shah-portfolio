@@ -15,7 +15,7 @@ export const CapabilitiesSection: React.FC = () => {
   return (
     <section
       id="capabilities"
-      className="py-16 sm:py-24 px-5 sm:px-6 lg:px-8 border-b border-black/10 dark:border-white/10 bg-[#F6F6F4] dark:bg-[#0A0A0A] text-[#0A0A0A] dark:text-white transition-colors duration-300"
+      className="py-16 sm:py-24 px-6 sm:px-8 md:px-10 lg:px-12 border-b border-black/10 dark:border-white/10 bg-[#F6F6F4] dark:bg-[#0A0A0A] text-[#0A0A0A] dark:text-white transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
         {/* Section Header: Quieter, solid heading without ghost-outline duplicate */}

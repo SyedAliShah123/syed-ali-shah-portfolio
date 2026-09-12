@@ -25,7 +25,7 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative pt-28 sm:pt-32 md:pt-36 pb-12 sm:pb-16 px-5 sm:px-6 lg:px-8 flex flex-col justify-center overflow-hidden bg-[#F6F6F4] dark:bg-[#0A0A0A] text-[#0A0A0A] dark:text-white transition-colors duration-300 border-b border-black/10 dark:border-white/10"
+      className="relative pt-28 sm:pt-32 md:pt-36 pb-12 sm:pb-16 px-6 sm:px-8 md:px-10 lg:px-12 flex flex-col justify-center overflow-hidden bg-[#F6F6F4] dark:bg-[#0A0A0A] text-[#0A0A0A] dark:text-white transition-colors duration-300 border-b border-black/10 dark:border-white/10"
     >
       {/* Subtle ambient neon glow in dark mode */}
       <div className="hidden dark:block absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[650px] h-[400px] sm:h-[650px] bg-[#E0FF00]/5 rounded-full blur-[140px] pointer-events-none -z-10" />
@@ -42,8 +42,8 @@ export const Hero: React.FC = () => {
                 CMS Developer &amp; Specialist
               </div>
 
-              {/* Bold headline formatted strictly across three lines */}
-              <h1 className="font-syne text-[32px] min-[390px]:text-[38px] sm:text-[48px] md:text-[54px] lg:text-[60px] font-extrabold uppercase leading-[0.95] tracking-tight text-[#0A0A0A] dark:text-white">
+              {/* Bold headline formatted strictly across three lines without cutting off on mobile */}
+              <h1 className="font-syne text-[24px] min-[360px]:text-[26px] min-[400px]:text-[28px] sm:text-[42px] md:text-[52px] lg:text-[60px] font-extrabold uppercase leading-[0.95] tracking-tight text-[#0A0A0A] dark:text-white">
                 <span className="block">MULTI-</span>
                 <span className="block">PLATFORM</span>
                 <span className="block mt-1 sm:mt-1.5 outline-text hover:text-[#0A0A0A] dark:hover:text-white transition-colors duration-300 whitespace-nowrap">
@@ -57,13 +57,13 @@ export const Hero: React.FC = () => {
               Specializing in custom web builds, theme development, and performance-focused implementations across WordPress, Shopify, Wix Studio, Webflow, and Squarespace.
             </p>
 
-            {/* Two CTA buttons side by side in one row */}
-            <div className="flex items-center gap-2.5 sm:gap-3.5 pt-1">
+            {/* Two CTA buttons side by side in one row without horizontal clipping */}
+            <div className="flex items-center gap-2 sm:gap-3.5 pt-1 w-full max-w-md">
               <button
                 id="hero-primary-cta"
                 onClick={scrollToProjects}
                 onMouseEnter={() => soundFX.playPop()}
-                className="px-4 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#0A0A0A] text-white hover:bg-neutral-800 dark:bg-[#E0FF00] dark:text-black dark:hover:bg-[#E0FF00]/90 font-syne text-[11px] sm:text-xs font-extrabold uppercase tracking-wider transition-all duration-200 inline-flex items-center gap-1.5 sm:gap-2 shadow-xs active:scale-95 cursor-pointer whitespace-nowrap shrink-0"
+                className="px-3.5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#0A0A0A] text-white hover:bg-neutral-800 dark:bg-[#E0FF00] dark:text-black dark:hover:bg-[#E0FF00]/90 font-syne text-[10.5px] sm:text-xs font-extrabold uppercase tracking-wider transition-all duration-200 inline-flex items-center justify-center gap-1.5 sm:gap-2 shadow-xs active:scale-95 cursor-pointer whitespace-nowrap shrink-0"
               >
                 <span>Explore Projects</span>
                 <ArrowDownRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -73,9 +73,11 @@ export const Hero: React.FC = () => {
                 id="hero-secondary-cta"
                 onClick={handleDownloadResume}
                 onMouseEnter={() => soundFX.playPop()}
-                className="px-4 py-2.5 sm:px-5 sm:py-3 rounded-full border border-black/20 dark:border-white/20 bg-white/60 dark:bg-white/5 hover:bg-black/5 dark:hover:bg-white/10 text-[#0A0A0A] dark:text-white font-syne text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-200 inline-flex items-center gap-1.5 sm:gap-2 active:scale-95 cursor-pointer whitespace-nowrap shrink-0"
+                className="px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-full border border-black/20 dark:border-white/20 bg-white/60 dark:bg-white/5 hover:bg-black/5 dark:hover:bg-white/10 text-[#0A0A0A] dark:text-white font-syne text-[10.5px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-200 inline-flex items-center justify-center gap-1.5 sm:gap-2 active:scale-95 cursor-pointer whitespace-nowrap shrink-0"
               >
-                <span>Download Resume</span>
+                <span>
+                  <span className="hidden min-[400px]:inline">Download </span>Resume
+                </span>
                 <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
             </div>

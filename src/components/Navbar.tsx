@@ -104,7 +104,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             : 'py-5 bg-transparent border-b border-black/5 dark:border-white/5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-10 lg:px-12 flex items-center justify-between">
           {/* Logo */}
           <button
             id="nav-logo"
@@ -233,16 +233,16 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <img
                     src={logoBlack}
                     alt="Syed Ali Shah"
-                    className="h-5 w-auto object-contain block dark:hidden"
+                    className="h-8 sm:h-9 w-auto object-contain block dark:hidden"
                   />
                   <img
                     src={logoYellow}
                     alt="Syed Ali Shah"
-                    className="h-5 w-auto object-contain hidden dark:block"
+                    className="h-8 sm:h-9 w-auto object-contain hidden dark:block"
                   />
                 </div>
 
-                <div className="space-y-4 pt-4">
+                <div className="space-y-3.5 pt-3">
                   <div className="text-[10px] font-mono tracking-[0.25em] text-neutral-600 dark:text-neutral-400 uppercase font-semibold">
                     Navigation
                   </div>
@@ -253,7 +253,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.04 * idx, duration: 0.2 }}
                       onClick={() => scrollTo(item.id)}
-                      className="block w-full text-left font-syne text-2xl font-extrabold uppercase text-neutral-900 dark:text-white hover:text-black/60 dark:hover:text-[#E0FF00] active:translate-x-2 transition-all cursor-pointer"
+                      className="block w-full text-left font-syne text-base sm:text-lg font-bold uppercase tracking-wider text-neutral-900 dark:text-white hover:text-black/60 dark:hover:text-[#E0FF00] active:translate-x-1.5 transition-all cursor-pointer"
                     >
                       {item.label}
                     </motion.button>
@@ -263,7 +263,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.04 * NAV_ITEMS.length, duration: 0.2 }}
                     onClick={() => scrollTo('contact')}
-                    className="block w-full text-left font-syne text-2xl font-extrabold uppercase text-neutral-900 dark:text-white hover:text-black/60 dark:hover:text-[#E0FF00] active:translate-x-2 transition-all cursor-pointer"
+                    className="block w-full text-left font-syne text-base sm:text-lg font-bold uppercase tracking-wider text-neutral-900 dark:text-white hover:text-black/60 dark:hover:text-[#E0FF00] active:translate-x-1.5 transition-all cursor-pointer"
                   >
                     CONTACT
                   </motion.button>

@@ -107,7 +107,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
   return (
     <section
       id="contact"
-      className="py-20 sm:py-32 px-5 sm:px-6 lg:px-8 bg-[#F6F6F4] dark:bg-[#0A0A0A] text-[#0A0A0A] dark:text-white transition-colors duration-300 relative overflow-hidden border-b border-black/10 dark:border-white/10"
+      className="py-20 sm:py-32 px-6 sm:px-8 md:px-10 lg:px-12 bg-[#F6F6F4] dark:bg-[#0A0A0A] text-[#0A0A0A] dark:text-white transition-colors duration-300 relative overflow-hidden border-b border-black/10 dark:border-white/10"
     >
       {/* Background neon ambient highlight */}
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#E0FF00]/10 dark:bg-[#E0FF00]/5 rounded-full blur-[140px] pointer-events-none" />
