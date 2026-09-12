@@ -57,28 +57,26 @@ export const Hero: React.FC = () => {
               Specializing in custom web builds, theme development, and performance-focused implementations across WordPress, Shopify, Wix Studio, Webflow, and Squarespace.
             </p>
 
-            {/* Two CTA buttons side by side in one row without horizontal clipping */}
-            <div className="flex items-center gap-2 sm:gap-3.5 pt-1 w-full max-w-md">
+            {/* Two CTA buttons: 2 rows on mobile, side-by-side on desktop */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1 w-full max-w-md">
               <button
                 id="hero-primary-cta"
                 onClick={scrollToProjects}
                 onMouseEnter={() => soundFX.playPop()}
-                className="px-3.5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#0A0A0A] text-white hover:bg-neutral-800 dark:bg-[#E0FF00] dark:text-black dark:hover:bg-[#E0FF00]/90 font-syne text-[10.5px] sm:text-xs font-extrabold uppercase tracking-wider transition-all duration-200 inline-flex items-center justify-center gap-1.5 sm:gap-2 shadow-xs active:scale-95 cursor-pointer whitespace-nowrap shrink-0"
+                className="w-full sm:w-auto px-6 py-3.5 sm:py-3.5 rounded-full bg-[#0A0A0A] text-white hover:bg-neutral-800 dark:bg-[#E0FF00] dark:text-black dark:hover:bg-[#E0FF00]/90 font-syne text-xs sm:text-xs font-extrabold uppercase tracking-wider transition-all duration-200 inline-flex items-center justify-center gap-2 shadow-xs active:scale-95 cursor-pointer whitespace-nowrap"
               >
                 <span>Explore Projects</span>
-                <ArrowDownRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <ArrowDownRight className="w-4 h-4" />
               </button>
 
               <button
                 id="hero-secondary-cta"
                 onClick={handleDownloadResume}
                 onMouseEnter={() => soundFX.playPop()}
-                className="px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-full border border-black/20 dark:border-white/20 bg-white/60 dark:bg-white/5 hover:bg-black/5 dark:hover:bg-white/10 text-[#0A0A0A] dark:text-white font-syne text-[10.5px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-200 inline-flex items-center justify-center gap-1.5 sm:gap-2 active:scale-95 cursor-pointer whitespace-nowrap shrink-0"
+                className="w-full sm:w-auto px-6 py-3.5 sm:py-3.5 rounded-full border border-black/20 dark:border-white/20 bg-white/60 dark:bg-white/5 hover:bg-black/5 dark:hover:bg-white/10 text-[#0A0A0A] dark:text-white font-syne text-xs sm:text-xs font-bold uppercase tracking-wider transition-all duration-200 inline-flex items-center justify-center gap-2 active:scale-95 cursor-pointer whitespace-nowrap"
               >
-                <span>
-                  <span className="hidden min-[400px]:inline">Download </span>Resume
-                </span>
-                <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span>Download Resume</span>
+                <Download className="w-4 h-4" />
               </button>
             </div>
           </div>
