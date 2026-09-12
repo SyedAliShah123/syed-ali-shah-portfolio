@@ -16,12 +16,6 @@ export const Hero: React.FC = () => {
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
-  const handleDownloadResume = useCallback(() => {
-    soundFX.playPop();
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  }, []);
-
   return (
     <section
       id="hero"
@@ -69,15 +63,19 @@ export const Hero: React.FC = () => {
                 <ArrowDownRight className="w-4 h-4" />
               </button>
 
-              <button
+              <a
                 id="hero-secondary-cta"
-                onClick={handleDownloadResume}
+                href="/assets/CMS Developer Syed Ali Shah CV.pdf"
+                download="CMS Developer Syed Ali Shah CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => soundFX.playPop()}
                 onMouseEnter={() => soundFX.playPop()}
                 className="w-full sm:w-auto px-6 py-3.5 sm:py-3.5 rounded-full border border-black/20 dark:border-white/20 bg-white/60 dark:bg-white/5 hover:bg-black/5 dark:hover:bg-white/10 text-[#0A0A0A] dark:text-white font-syne text-xs sm:text-xs font-bold uppercase tracking-wider transition-all duration-200 inline-flex items-center justify-center gap-2 active:scale-95 cursor-pointer whitespace-nowrap"
               >
                 <span>Download Resume</span>
                 <Download className="w-4 h-4" />
-              </button>
+              </a>
             </div>
           </div>
 

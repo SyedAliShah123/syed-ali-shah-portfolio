@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Sun, Moon, Menu, X, ArrowUpRight } from 'lucide-react';
+import { Sun, Moon, Menu, X, ArrowUpRight, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { soundFX } from '../utils/audio';
 import logoBlack from '../assets/logo-black.svg';
@@ -267,6 +267,23 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     CONTACT
                   </motion.button>
+                  <motion.a
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.04 * (NAV_ITEMS.length + 1), duration: 0.2 }}
+                    href="/assets/CMS Developer Syed Ali Shah CV.pdf"
+                    download="CMS Developer Syed Ali Shah CV.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      soundFX.playPop();
+                      setMobileMenuOpen(false);
+                    }}
+                    className="flex items-center gap-2 w-full text-left font-syne text-base sm:text-lg font-bold uppercase tracking-wider text-neutral-900 dark:text-[#E0FF00] hover:text-black/60 dark:hover:text-white active:translate-x-1.5 transition-all cursor-pointer"
+                  >
+                    <span>DOWNLOAD CV</span>
+                    <Download className="w-4 h-4" />
+                  </motion.a>
                 </div>
               </div>
 

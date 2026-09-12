@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MessageSquare, Mail, Phone, X, ArrowUpRight } from 'lucide-react';
+import { MessageSquare, Mail, Phone, X, ArrowUpRight, Download } from 'lucide-react';
 import { soundFX } from '../utils/audio';
 
 export const QuickContactFab: React.FC = () => {
@@ -61,6 +61,20 @@ export const QuickContactFab: React.FC = () => {
               <Phone className="w-3.5 h-3.5 text-black dark:text-[#E0FF00]" /> WhatsApp Chat
             </span>
             <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
+
+          <a
+            href="/assets/CMS Developer Syed Ali Shah CV.pdf"
+            download="CMS Developer Syed Ali Shah CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => soundFX.playClick()}
+            className="flex items-center justify-between p-2.5 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-xs font-bold text-[#0A0A0A] dark:text-white transition-colors border border-black/10 dark:border-white/10"
+          >
+            <span className="flex items-center gap-2">
+              <Download className="w-3.5 h-3.5 text-black dark:text-[#E0FF00]" /> Download CV
+            </span>
+            <Download className="w-3.5 h-3.5" />
           </a>
 
           <button
