@@ -55,6 +55,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
     setFormData((prev) => ({ ...prev, budget: b }));
   }, []);
 
+  const encode = (data: Record<string, string>) => {
+    return Object.keys(data)
+      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
@@ -65,20 +71,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
     setIsSubmitting(true);
 
     try {
-      const res = await fetch('https://formsubmit.co/ajax/shahsyedali148@gmail.com', {
+      const res = await fetch('/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          Name: formData.name,
-          Email: formData.email,
-          'Project Type': formData.projectType || 'General Inquiry',
-          Budget: formData.budget,
-          Message: formData.message,
-          _subject: `New CMS Project Inquiry from ${formData.name}`,
-          _template: 'table',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({
+          'form-name': 'contact',
+          name: formData.name,
+          email: formData.email,
+          projectType: formData.projectType || 'General Inquiry',
+          budget: formData.budget,
+          message: formData.message,
         }),
       });
 
@@ -267,7 +269,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form
+                  name="contact"
+                  method="POST"
+                  data-netlify="true"
+                  onSubmit={handleSubmit}
+                  className="space-y-4"
+                >
+                  <input type="hidden" name="form-name" value="contact" />
+                  <input type="hidden" name="budget" value={formData.budget} />
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-800 dark:text-neutral-200 font-semibold">
@@ -275,6 +286,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                       </label>
                       <input
                         type="text"
+                        name="name"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -289,6 +301,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                       </label>
                       <input
                         type="email"
+                        name="email"
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -304,6 +317,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                     </label>
                     <input
                       type="text"
+                      name="projectType"
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                       placeholder="e.g. WordPress ACF Pro / Shopify Liquid / Wix Studio / Webflow"
@@ -342,6 +356,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                       Project Requirements *
                     </label>
                     <textarea
+                      name="message"
                       required
                       rows={4}
                       value={formData.message}
