@@ -113,13 +113,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          Name: formData.name,
-          Email: formData.email,
-          'Project Type': formData.projectType || 'General Inquiry',
-          Budget: formData.budget,
-          Message: formData.message,
-          _subject: `New CMS Project Inquiry from ${formData.name}`,
+          _subject: `[Syed Ali Shah Portfolio] New Project Inquiry from ${formData.name}`,
+          _replyto: formData.email,
           _template: 'table',
+          _captcha: 'false',
+          'Client Name': formData.name,
+          'Client Email': formData.email,
+          'Platform / Build Scope': formData.projectType || 'General Inquiry',
+          'Estimated Budget': formData.budget,
+          'Project Requirements': formData.message,
+          'Submitted From': 'Syed Ali Shah Portfolio (syed-ali-shah-portfolio.netlify.app)',
         }),
       });
 
