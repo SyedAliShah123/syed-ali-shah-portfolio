@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Send, Copy, Check, Sparkles, Mail, MapPin, ArrowUpRight } from 'lucide-react';
+import { Send, Copy, Check, Sparkles, Mail, MapPin, ArrowUpRight, AlertCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { soundFX } from '../utils/audio';
 
@@ -18,9 +18,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
     message: '',
   });
 
+  const [botField, setBotField] = useState('');
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const copyTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -67,15 +69,26 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
       return;
     }
 
+    // Bot trap check
+    if (botField) {
+      setSubmitted(true);
+      return;
+    }
+
     soundFX.playClick();
     setIsSubmitting(true);
+    setSubmitError(null);
 
+    let sent = false;
+
+    // 1. Submit to Netlify Forms endpoint (registers in Netlify Dashboard)
     try {
-      const res = await fetch('/', {
+      const netlifyRes = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encode({
           'form-name': 'contact',
+          'bot-field': botField,
           name: formData.name,
           email: formData.email,
           projectType: formData.projectType || 'General Inquiry',
@@ -84,25 +97,57 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
         }),
       });
 
-      if (res.ok) {
-        setSubmitted(true);
-        soundFX.playSuccess();
-        confetti({
-          particleCount: 75,
-          spread: 65,
-          origin: { y: 0.7 },
-          colors: ['#FFFFFF', '#E0FF00', '#0A0A0A', '#9CA3AF'],
-        });
-      } else {
-        setSubmitted(true);
-        soundFX.playSuccess();
+      if (netlifyRes.ok) {
+        sent = true;
       }
     } catch (err) {
-      console.warn('Form submission encountered an issue, proceeding with fallback:', err);
+      console.warn('Netlify form submission issue:', err);
+    }
+
+    // 2. Direct email delivery via FormSubmit so emails land straight in shahsyedali148@gmail.com
+    try {
+      const emailRes = await fetch('https://formsubmit.co/ajax/shahsyedali148@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          Name: formData.name,
+          Email: formData.email,
+          'Project Type': formData.projectType || 'General Inquiry',
+          Budget: formData.budget,
+          Message: formData.message,
+          _subject: `New CMS Project Inquiry from ${formData.name}`,
+          _template: 'table',
+        }),
+      });
+
+      if (emailRes.ok) {
+        const data = await emailRes.json().catch(() => null);
+        if (data?.success !== 'false') {
+          sent = true;
+        }
+      }
+    } catch (err) {
+      console.warn('Direct email dispatch issue:', err);
+    }
+
+    setIsSubmitting(false);
+
+    if (sent) {
       setSubmitted(true);
       soundFX.playSuccess();
-    } finally {
-      setIsSubmitting(false);
+      confetti({
+        particleCount: 75,
+        spread: 65,
+        origin: { y: 0.7 },
+        colors: ['#FFFFFF', '#E0FF00', '#0A0A0A', '#9CA3AF'],
+      });
+    } else {
+      setSubmitError(
+        'Unable to send inquiry automatically. Please email directly at shahsyedali148@gmail.com.'
+      );
     }
   };
 
@@ -255,6 +300,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                     onClick={() => {
                       soundFX.playClick();
                       setSubmitted(false);
+                      setSubmitError(null);
+                      setBotField('');
                       setFormData({
                         name: '',
                         email: '',
@@ -273,11 +320,26 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                   name="contact"
                   method="POST"
                   data-netlify="true"
+                  data-netlify-honeypot="bot-field"
                   onSubmit={handleSubmit}
                   className="space-y-4"
                 >
                   <input type="hidden" name="form-name" value="contact" />
                   <input type="hidden" name="budget" value={formData.budget} />
+
+                  {/* Honeypot field for bot protection & Netlify compatibility */}
+                  <p className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+                    <label>
+                      Don’t fill this out if you're human:
+                      <input
+                        name="bot-field"
+                        value={botField}
+                        onChange={(e) => setBotField(e.target.value)}
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+                    </label>
+                  </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
@@ -365,6 +427,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                       className="w-full px-4 py-3 rounded-2xl bg-[#F6F6F4] dark:bg-white/5 border border-black/15 dark:border-white/15 text-[#0A0A0A] dark:text-white placeholder:text-neutral-500 text-sm focus:outline-none focus:border-black dark:focus:border-[#E0FF00] transition-colors resize-none font-sans"
                     />
                   </div>
+
+                  {submitError && (
+                    <div className="p-3.5 rounded-2xl bg-red-500/10 border border-red-500/30 text-red-600 dark:text-red-400 text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <AlertCircle className="w-4 h-4 shrink-0 text-red-500" />
+                        <span>{submitError}</span>
+                      </div>
+                      <a
+                        href={`mailto:shahsyedali148@gmail.com?subject=Project Inquiry from ${encodeURIComponent(formData.name || 'Client')}&body=${encodeURIComponent(formData.message)}`}
+                        className="underline font-bold shrink-0 hover:opacity-80 ml-6 sm:ml-0"
+                      >
+                        Email Directly →
+                      </a>
+                    </div>
+                  )}
 
                   <button
                     type="submit"

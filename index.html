@@ -14,7 +14,9 @@
   </head>
   <body class="bg-[#F6F6F4] text-[#111111] antialiased selection:bg-neutral-900 selection:text-white">
     <!-- Netlify form detection for React SPA -->
-    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="text" name="bot-field" />
       <input type="text" name="name" />
       <input type="email" name="email" />
       <input type="text" name="projectType" />
