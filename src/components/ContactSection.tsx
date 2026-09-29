@@ -380,16 +380,19 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-800 dark:text-neutral-200 font-semibold">
+                      <label htmlFor="contact-client-name" className="block text-[11px] font-mono uppercase tracking-wider text-neutral-800 dark:text-neutral-200 font-semibold">
                         Your Name *
                       </label>
                       <input
+                        id="contact-client-name"
                         type="text"
                         name="name"
                         required
                         maxLength={80}
                         minLength={2}
                         autoComplete="name"
+                        aria-required="true"
+                        aria-label="Your full name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Alex Morgan"
@@ -398,15 +401,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-800 dark:text-neutral-200 font-semibold">
+                      <label htmlFor="contact-client-email" className="block text-[11px] font-mono uppercase tracking-wider text-neutral-800 dark:text-neutral-200 font-semibold">
                         Your Email *
                       </label>
                       <input
+                        id="contact-client-email"
                         type="email"
                         name="email"
                         required
                         maxLength={100}
                         autoComplete="email"
+                        aria-required="true"
+                        aria-label="Your email address"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="alex@company.com"
@@ -416,13 +422,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-800 dark:text-neutral-200 font-semibold">
+                    <label htmlFor="contact-project-scope" className="block text-[11px] font-mono uppercase tracking-wider text-neutral-800 dark:text-neutral-200 font-semibold">
                       Platform / Build Scope
                     </label>
                     <input
+                      id="contact-project-scope"
                       type="text"
                       name="projectType"
                       maxLength={100}
+                      autoComplete="off"
+                      aria-label="CMS platform or build scope"
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                       placeholder="e.g. WordPress ACF Pro / Shopify Liquid / Wix Studio / Webflow"
@@ -432,16 +441,23 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
 
                   {/* Budget Selector Pills */}
                   <div className="space-y-1.5">
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-800 dark:text-neutral-200 font-semibold">
+                    <label id="contact-budget-label" className="block text-[11px] font-mono uppercase tracking-wider text-neutral-800 dark:text-neutral-200 font-semibold">
                       Estimated Budget
                     </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    <div
+                      role="radiogroup"
+                      aria-labelledby="contact-budget-label"
+                      className="grid grid-cols-2 sm:grid-cols-4 gap-2"
+                    >
                       {BUDGET_OPTIONS.map((b) => {
                         const isSelected = formData.budget === b;
                         return (
                           <button
                             key={b}
                             type="button"
+                            role="radio"
+                            aria-checked={isSelected}
+                            aria-label={`Budget option: ${b}`}
                             onClick={() => handleBudgetSelect(b)}
                             className={`py-2 px-3 rounded-xl text-xs font-mono transition-all cursor-pointer border text-center ${
                               isSelected
@@ -457,15 +473,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-800 dark:text-neutral-200 font-semibold">
+                    <label htmlFor="contact-message-body" className="block text-[11px] font-mono uppercase tracking-wider text-neutral-800 dark:text-neutral-200 font-semibold">
                       Project Requirements *
                     </label>
                     <textarea
+                      id="contact-message-body"
                       name="message"
                       required
                       minLength={10}
                       maxLength={3000}
                       rows={4}
+                      aria-required="true"
+                      aria-label="Project requirements and deliverables description"
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Describe the platform required, existing codebase (if any), and key deliverables..."

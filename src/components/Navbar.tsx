@@ -15,9 +15,10 @@ const NAV_ITEMS = [
   { label: 'ABOUT ME', id: 'about' },
   { label: 'PROJECTS', id: 'projects' },
   { label: 'SERVICES', id: 'services' },
+  { label: 'FAQ', id: 'faq' },
 ];
 
-const SECTIONS = ['hero', 'capabilities', 'about', 'projects', 'services', 'contact'];
+const SECTIONS = ['hero', 'capabilities', 'about', 'projects', 'services', 'faq', 'contact'];
 
 export const Navbar: React.FC<NavbarProps> = ({
   darkMode,

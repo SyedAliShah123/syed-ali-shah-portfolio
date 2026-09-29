@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://syedalishah.netlify.app/sitemap.xml
+Agentmap: https://syedalishah.netlify.app/.well-known/ai-catalog.json

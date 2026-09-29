@@ -21,6 +21,9 @@ const ProjectsSection = lazy(() =>
 const ServicesSection = lazy(() =>
   import('./components/ServicesSection').then((m) => ({ default: m.ServicesSection }))
 );
+const FaqSection = lazy(() =>
+  import('./components/FaqSection').then((m) => ({ default: m.FaqSection }))
+);
 const ContactSection = lazy(() =>
   import('./components/ContactSection').then((m) => ({ default: m.ContactSection }))
 );
@@ -83,6 +86,10 @@ export default function App() {
 
           <Suspense fallback={<SectionSkeleton height="min-h-[600px]" title="Loading Services..." />}>
             <ServicesSection onSelectServiceForContact={handleSelectService} />
+          </Suspense>
+
+          <Suspense fallback={<SectionSkeleton height="min-h-[500px]" title="Loading FAQ & Direct Answers..." />}>
+            <FaqSection />
           </Suspense>
 
           <Suspense fallback={<SectionSkeleton height="min-h-[650px]" title="Loading Contact Form..." />}>

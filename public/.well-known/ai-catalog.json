@@ -1,0 +1,48 @@
+{
+  "$schema": "https://agenticresourcediscovery.org/schemas/v1/ard.json",
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Syed Ali Shah — Junior CMS Developer Portfolio",
+    "identifier": "https://syedalishah.netlify.app"
+  },
+  "entries": [
+    {
+      "identifier": "urn:ai:syedalishah.netlify.app:service:inquiry",
+      "displayName": "CMS Development Inquiry Service",
+      "type": "text/html",
+      "url": "https://syedalishah.netlify.app/#contact",
+      "description": "Direct inquiry and project scope intake for custom CMS development across WordPress, Shopify, Wix Studio, and Webflow.",
+      "tags": [
+        "cms-developer",
+        "wordpress",
+        "shopify-liquid",
+        "wix-studio",
+        "webflow",
+        "peachy-digitals",
+        "karachi"
+      ],
+      "representativeQueries": [
+        "Who can build a custom Shopify Liquid theme in Karachi?",
+        "WordPress ACF Pro and Gutenberg developer",
+        "Wix Studio Velo API developer",
+        "Junior CMS Developer Syed Ali Shah"
+      ]
+    },
+    {
+      "identifier": "urn:ai:syedalishah.netlify.app:doc:llms",
+      "displayName": "LLM Orientation & Skill Index",
+      "type": "text/plain",
+      "url": "https://syedalishah.netlify.app/llms.txt",
+      "description": "Curated machine-readable overview of skills, projects, and contact channels for AI agents and LLMs.",
+      "tags": [
+        "llms-txt",
+        "knowledge-base",
+        "portfolio-index"
+      ],
+      "representativeQueries": [
+        "Syed Ali Shah developer resume and tech stack",
+        "Peachy Digitals CMS developer experience"
+      ]
+    }
+  ]
+}

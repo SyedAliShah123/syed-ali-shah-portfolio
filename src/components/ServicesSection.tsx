@@ -65,11 +65,15 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     : 'bg-white/60 dark:bg-white/3 text-[#0A0A0A] dark:text-white border-black/10 dark:border-white/10 hover:border-black/30 dark:hover:border-white/30'
                 }`}
               >
-                {/* Clickable Header Bar */}
-                <div
+                {/* Clickable Header Button */}
+                <button
+                  type="button"
                   onClick={() => toggleService(svc.id)}
                   onMouseEnter={() => soundFX.playPop()}
-                  className="p-5 sm:p-7 flex items-center justify-between gap-4 cursor-pointer select-none"
+                  aria-expanded={isActive}
+                  aria-controls={`service-panel-${svc.id}`}
+                  id={`service-header-${svc.id}`}
+                  className="w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 cursor-pointer select-none"
                 >
                   <div className="flex items-center gap-4 sm:gap-6 min-w-0">
                     <div
@@ -118,11 +122,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                       }`}
                     />
                   </div>
-                </div>
+                </button>
 
                 {/* Expanded Details Panel */}
                 {isActive && (
-                  <div className="px-5 sm:px-7 pb-7 pt-2 border-t border-black/10 dark:border-white/10 grid grid-cols-1 lg:grid-cols-12 gap-6 animate-in slide-in-from-top-2 duration-300">
+                  <div
+                    id={`service-panel-${svc.id}`}
+                    role="region"
+                    aria-labelledby={`service-header-${svc.id}`}
+                    className="px-5 sm:px-7 pb-7 pt-2 border-t border-black/10 dark:border-white/10 grid grid-cols-1 lg:grid-cols-12 gap-6 animate-in slide-in-from-top-2 duration-300"
+                  >
                     <div className="lg:col-span-6 space-y-4">
                       <p className="text-sm sm:text-base leading-relaxed text-neutral-800 dark:text-neutral-200 font-normal">
                         {svc.details}

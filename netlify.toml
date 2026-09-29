@@ -51,6 +51,27 @@
     Content-Type = "application/xml; charset=utf-8"
     Cache-Control = "public, max-age=86400"
 
+# Agentic Browsing & Generative Engine Discovery
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/.well-known/ai-catalog.json"
+  [headers.values]
+    Content-Type = "application/json; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/ai-catalog.json"
+  [headers.values]
+    Content-Type = "application/json; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=86400"
+
 # Dynamic HTML revalidation (never stale SPA shell)
 [[headers]]
   for = "/index.html"

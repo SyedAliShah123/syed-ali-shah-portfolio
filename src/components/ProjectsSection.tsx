@@ -90,18 +90,17 @@ export const ProjectsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Projects Grid: 12 Projects with simplified card headers (only 1 badge per card) */}
+        {/* Projects Grid: Semantic article cards with accessible triggers for AI agents & crawlers */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
-            <div
+            <article
               key={project.id}
-              onClick={() => handleOpenModal(project)}
-              onMouseEnter={() => soundFX.playPop()}
-              className="bg-white dark:bg-white/3 border border-black/10 dark:border-white/10 group rounded-3xl hover:border-black dark:hover:border-[#E0FF00]/60 transition-all duration-300 overflow-hidden shadow-sm dark:shadow-xl cursor-pointer flex flex-col justify-between hover-lift"
+              aria-labelledby={`project-title-${project.id}`}
+              className="bg-white dark:bg-white/3 border border-black/10 dark:border-white/10 group rounded-3xl hover:border-black dark:hover:border-[#E0FF00]/60 transition-all duration-300 overflow-hidden shadow-sm dark:shadow-xl flex flex-col justify-between hover-lift relative"
             >
-              {/* Card Media Preview: ONLY ONE BADGE (Platform Name) */}
+              {/* Card Media Preview */}
               <div className="relative aspect-[16/10] bg-neutral-100 dark:bg-neutral-900 overflow-hidden border-b border-black/10 dark:border-white/10">
-                {/* Single simplified platform badge per card */}
+                {/* Single platform badge */}
                 <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/85 backdrop-blur-md text-white text-[10px] font-mono border border-white/15 shadow-sm font-semibold">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#E0FF00]" />
                   {project.platform}
@@ -117,9 +116,9 @@ export const ProjectsSection: React.FC = () => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0 opacity-90 group-hover:opacity-100"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4 pointer-events-none">
                   <span className="text-[#E0FF00] text-xs font-mono font-semibold flex items-center gap-1">
-                    Explore Project <ArrowUpRight className="w-3.5 h-3.5" />
+                    Explore Case Study <ArrowUpRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
               </div>
@@ -131,12 +130,21 @@ export const ProjectsSection: React.FC = () => {
                     <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-neutral-800 dark:text-neutral-200 border border-black/10 dark:border-white/10 font-bold">
                       {project.buildType}
                     </span>
-                    <div className="w-7 h-7 rounded-full border border-black/15 dark:border-white/15 flex items-center justify-center text-black/70 dark:text-white/70 group-hover:bg-black group-hover:text-white dark:group-hover:bg-[#E0FF00] dark:group-hover:text-black dark:group-hover:border-[#E0FF00] transition-colors shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => handleOpenModal(project)}
+                      onMouseEnter={() => soundFX.playPop()}
+                      aria-label={`Open detailed specifications for ${project.title}`}
+                      className="w-7 h-7 rounded-full border border-black/15 dark:border-white/15 flex items-center justify-center text-black/70 dark:text-white/70 group-hover:bg-black group-hover:text-white dark:group-hover:bg-[#E0FF00] dark:group-hover:text-black dark:group-hover:border-[#E0FF00] transition-colors shrink-0 cursor-pointer"
+                    >
                       <ArrowUpRight className="w-3.5 h-3.5" />
-                    </div>
+                    </button>
                   </div>
 
-                  <h3 className="font-syne text-lg sm:text-xl font-bold tracking-tight text-[#0A0A0A] dark:text-white group-hover:text-neutral-700 dark:group-hover:text-[#E0FF00] transition-colors">
+                  <h3
+                    id={`project-title-${project.id}`}
+                    className="font-syne text-lg sm:text-xl font-bold tracking-tight text-[#0A0A0A] dark:text-white group-hover:text-neutral-700 dark:group-hover:text-[#E0FF00] transition-colors"
+                  >
                     {project.title}
                   </h3>
 
@@ -149,23 +157,22 @@ export const ProjectsSection: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Card Footer */}
+                {/* Card Footer with explicit semantic button */}
                 <div className="pt-4 mt-2 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
                   <span className="font-mono text-[11px] text-neutral-600 dark:text-neutral-400">
-                    Concept project
+                    {project.platform}
                   </span>
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleOpenModal(project);
-                    }}
+                    type="button"
+                    onClick={() => handleOpenModal(project)}
+                    aria-label={`View technical specifications for ${project.title}`}
                     className="font-mono text-xs font-bold text-black dark:text-[#E0FF00] hover:underline flex items-center gap-1 cursor-pointer"
                   >
                     View Specs →
                   </button>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 

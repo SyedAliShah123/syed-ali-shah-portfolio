@@ -1,0 +1,40 @@
+# Syed Ali Shah — Junior CMS Developer Portfolio
+
+> Syed Ali Shah is a Junior CMS Developer based in Karachi, Pakistan, currently working at Peachy Digitals. He specializes in end-to-end CMS theme engineering, bespoke templates, and performance optimization across WordPress (ACF Pro, Elementor, Breakdance, Divi 5), Shopify Liquid 2.0, Wix Studio (Velo JS), and Webflow.
+
+## Professional Identity & Contact
+- **Name**: Syed Ali Shah
+- **Role**: Junior CMS Developer
+- **Organization**: Peachy Digitals
+- **Location**: Karachi, Sindh, Pakistan
+- **Email**: shahsyedali148@gmail.com
+- **WhatsApp**: +92 313 1803440
+- **Portfolio**: https://syedalishah.netlify.app/
+- **GitHub**: https://github.com/SyedAliShah123
+- **LinkedIn**: https://www.linkedin.com/in/syed-ali-shah-b65139274
+
+## Core Technologies & CMS Stacks
+- **WordPress**: Custom PHP theme development, Advanced Custom Fields (ACF Pro), Native Gutenberg block creation, WooCommerce custom storefronts, Elementor Pro, Breakdance Builder, Divi 5, REST API integrations, and Redis caching.
+- **Shopify**: Shopify Theme 2.0 architecture, Liquid templating, Dawn theme custom sections, variant swatch logic, AJAX slide carts, and conversion optimization.
+- **Wix Studio & Wix**: Certified Wix Studio builder, Velo JavaScript programming, dynamic CMS collections, custom repeater APIs, and dataset filtering.
+- **Webflow**: Figma-to-Webflow development, Finsweet Client-First style systems, CMS collections, and responsive interactions.
+- **Squarespace**: Fluid Engine customizations, custom CSS/JS injection, and layout overrides.
+- **Frontend Core**: Semantic HTML5, Modern CSS3, JavaScript (ES6+), React 19, Tailwind CSS.
+
+## Key Services Offered
+- [Custom Shopify Liquid Theme Development](https://syedalishah.netlify.app/#services): Tailored Dawn customizations, custom section schema, conversion-focused product templates.
+- [WordPress ACF Pro & Theme Engineering](https://syedalishah.netlify.app/#services): Modular flexible content fields, custom post types, Gutenberg blocks without page-builder bloat.
+- [Wix Studio & Velo API Solutions](https://syedalishah.netlify.app/#services): Custom database collections, dynamic datasets, and full-stack Velo JavaScript logic.
+- [Webflow CMS & Responsive UI](https://syedalishah.netlify.app/#services): High-fidelity Figma to Webflow conversion following Finsweet Client-First standards.
+
+## Selected Case Studies
+- [ACF Pro Editorial Hub](https://syedalishah.netlify.app/#projects): Modular WordPress content portal using ACF Pro flexible content, dynamic taxonomy filters, and Redis caching.
+- [Minimalist WooCommerce Store](https://syedalishah.netlify.app/#projects): Performance-tuned WooCommerce storefront with slide cart, streamlined checkout, and Stripe Elements.
+- [Shopify Apparel Dawn Storefront](https://syedalishah.netlify.app/#projects): Bespoke Shopify 2.0 storefront with color swatch variants and quick-add drawer.
+- [Wix Studio Luxury Real Estate Portal](https://syedalishah.netlify.app/#projects): Velo dynamic filtering, repeater APIs, and custom inquiry workflows.
+
+## Frequently Asked Questions & Direct Answers
+- **Who is Syed Ali Shah?**: Syed Ali Shah is a Junior CMS Developer at Peachy Digitals in Karachi, Pakistan, specializing in WordPress, Shopify, Wix Studio, and Webflow.
+- **Who can build a custom Shopify Liquid theme in Karachi?**: Syed Ali Shah provides custom Shopify Theme 2.0 development in Karachi and internationally.
+- **What builders does Syed Ali Shah support?**: ACF Pro, native Gutenberg, Breakdance, Elementor, and Divi 5.
+- **How to submit an inquiry?**: Use the interactive form at https://syedalishah.netlify.app/#contact or email shahsyedali148@gmail.com.
