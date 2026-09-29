@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring } from 'motion/react';
 export const CustomCursor: React.FC = () => {
   const [cursorVariant, setCursorVariant] = useState<'default' | 'hover' | 'text'>('default');
   const [isVisible, setIsVisible] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const variantRef = useRef<'default' | 'hover' | 'text'>('default');
   const isVisibleRef = useRef(false);
 
@@ -13,6 +14,24 @@ export const CustomCursor: React.FC = () => {
   const springConfig = { damping: 28, stiffness: 400, mass: 0.2 };
   const smoothX = useSpring(rawX, springConfig);
   const smoothY = useSpring(rawY, springConfig);
+
+  // Synchronize cursor styling with theme changes
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const updateTheme = () => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    };
+    updateTheme();
+
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     // Only enable on fine pointer devices (not touch screens)
@@ -80,7 +99,7 @@ export const CustomCursor: React.FC = () => {
       width: 12,
       height: 12,
       borderRadius: '9999px',
-      backgroundColor: 'rgba(18, 18, 18, 0.8)',
+      backgroundColor: isDarkMode ? 'rgba(224, 255, 0, 0.95)' : 'rgba(18, 18, 18, 0.85)',
       border: '0px solid transparent',
       translateX: '-50%',
       translateY: '-50%',
@@ -89,8 +108,8 @@ export const CustomCursor: React.FC = () => {
       width: 48,
       height: 48,
       borderRadius: '9999px',
-      backgroundColor: 'rgba(18, 18, 18, 0.15)',
-      border: '1.5px solid rgba(18, 18, 18, 0.6)',
+      backgroundColor: isDarkMode ? 'rgba(224, 255, 0, 0.1)' : 'rgba(18, 18, 18, 0.08)',
+      border: isDarkMode ? '1.5px solid rgba(224, 255, 0, 0.75)' : '1.5px solid rgba(18, 18, 18, 0.5)',
       translateX: '-50%',
       translateY: '-50%',
     },
@@ -98,7 +117,7 @@ export const CustomCursor: React.FC = () => {
       width: 4,
       height: 24,
       borderRadius: '2px',
-      backgroundColor: 'rgba(18, 18, 18, 0.8)',
+      backgroundColor: isDarkMode ? 'rgba(224, 255, 0, 0.95)' : 'rgba(18, 18, 18, 0.85)',
       border: '0px solid transparent',
       translateX: '-50%',
       translateY: '-50%',

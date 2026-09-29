@@ -1,16 +1,29 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
 import { LenisProvider } from './components/LenisProvider';
 import { CustomCursor } from './components/CustomCursor';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Marquee } from './components/Marquee';
-import { CapabilitiesSection } from './components/CapabilitiesSection';
-import { AboutSection } from './components/AboutSection';
-import { ProjectsSection } from './components/ProjectsSection';
-import { ServicesSection } from './components/ServicesSection';
-import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { QuickContactFab } from './components/QuickContactFab';
+import { SectionSkeleton } from './components/SectionSkeleton';
+
+// Code-split below-the-fold sections into on-demand chunks
+const CapabilitiesSection = lazy(() =>
+  import('./components/CapabilitiesSection').then((m) => ({ default: m.CapabilitiesSection }))
+);
+const AboutSection = lazy(() =>
+  import('./components/AboutSection').then((m) => ({ default: m.AboutSection }))
+);
+const ProjectsSection = lazy(() =>
+  import('./components/ProjectsSection').then((m) => ({ default: m.ProjectsSection }))
+);
+const ServicesSection = lazy(() =>
+  import('./components/ServicesSection').then((m) => ({ default: m.ServicesSection }))
+);
+const ContactSection = lazy(() =>
+  import('./components/ContactSection').then((m) => ({ default: m.ContactSection }))
+);
 
 export default function App() {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
@@ -51,16 +64,30 @@ export default function App() {
           setDarkMode={setDarkMode}
         />
 
-        {/* Main Content Sections */}
+        {/* Main Content Sections: Hero & Marquee are critical above-the-fold */}
         <main>
           <Hero />
           <Marquee />
-          <CapabilitiesSection />
-          <AboutSection />
-          <ProjectsSection />
-          <ServicesSection onSelectServiceForContact={handleSelectService} />
-          {/* Add real client testimonials once available */}
-          <ContactSection prefilledService={selectedServiceForContact} />
+
+          <Suspense fallback={<SectionSkeleton height="min-h-[480px]" title="Loading Capabilities..." />}>
+            <CapabilitiesSection />
+          </Suspense>
+
+          <Suspense fallback={<SectionSkeleton height="min-h-[600px]" title="Loading About Me..." />}>
+            <AboutSection />
+          </Suspense>
+
+          <Suspense fallback={<SectionSkeleton height="min-h-[700px]" title="Loading Projects..." />}>
+            <ProjectsSection />
+          </Suspense>
+
+          <Suspense fallback={<SectionSkeleton height="min-h-[600px]" title="Loading Services..." />}>
+            <ServicesSection onSelectServiceForContact={handleSelectService} />
+          </Suspense>
+
+          <Suspense fallback={<SectionSkeleton height="min-h-[650px]" title="Loading Contact Form..." />}>
+            <ContactSection prefilledService={selectedServiceForContact} />
+          </Suspense>
         </main>
 
         {/* Footer & Quick Contact */}

@@ -1,8 +1,45 @@
+# Dependencies
 node_modules/
-build/
+/.pnp
+.pnp.js
+
+# Production build outputs
 dist/
+build/
+.netlify/
+
+# Testing & Coverage
 coverage/
-.DS_Store
-*.log
-.env*
+
+# Environment files and secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+*.pem
+*.key
+*.cert
+*.pfx
+
+# Allow example config only
 !.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# IDE & Editor caches
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj

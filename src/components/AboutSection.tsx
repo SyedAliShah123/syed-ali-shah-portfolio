@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { ArrowUpRight, ShieldCheck, Zap, Code2 } from 'lucide-react';
 import { soundFX } from '../utils/audio';
-import syedPortrait from '../assets/syed-ali-shah.jpg';
+import syedPortrait from '../assets/syed-ali-shah.webp';
 
 const PRINCIPLES = [
   {
@@ -71,6 +71,10 @@ export const AboutSection: React.FC = () => {
                 <img
                   src={syedPortrait}
                   alt="Syed Ali Shah — CMS Developer"
+                  width={819}
+                  height={1024}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                 />
 

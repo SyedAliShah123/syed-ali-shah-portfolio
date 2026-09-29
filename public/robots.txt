@@ -1,0 +1,6 @@
+# Allow all search engine crawlers and robots
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://syedalishah.netlify.app/sitemap.xml

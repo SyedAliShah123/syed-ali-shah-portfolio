@@ -2,6 +2,13 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Send, Copy, Check, Sparkles, Mail, MapPin, ArrowUpRight, AlertCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { soundFX } from '../utils/audio';
+import {
+  sanitizeSingleLine,
+  sanitizeMultiLine,
+  isValidEmail,
+  checkRateLimit,
+  recordRateLimitAction,
+} from '../utils/security';
 
 interface ContactSectionProps {
   prefilledService?: string;
@@ -65,19 +72,45 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      return;
-    }
+    setSubmitError(null);
 
-    // Bot trap check
+    // 1. Bot honeypot verification
     if (botField) {
       setSubmitted(true);
       return;
     }
 
+    // 2. Client-side rate limiting / spam prevention (30s cooldown)
+    const rateLimit = checkRateLimit('contact_form', 30);
+    if (!rateLimit.allowed) {
+      setSubmitError(`Please wait ${rateLimit.remainingSeconds}s before submitting another inquiry.`);
+      return;
+    }
+
+    // 3. Robust input sanitization and anti-CRLF header injection defense
+    const cleanName = sanitizeSingleLine(formData.name, 80);
+    const cleanEmail = sanitizeSingleLine(formData.email, 100);
+    const cleanProjectType = sanitizeSingleLine(formData.projectType || 'General Inquiry', 100);
+    const cleanBudget = BUDGET_OPTIONS.includes(formData.budget) ? formData.budget : '$1k – $2.5k';
+    const cleanMessage = sanitizeMultiLine(formData.message, 3000);
+
+    if (!cleanName || cleanName.length < 2) {
+      setSubmitError('Please enter a valid name (minimum 2 characters).');
+      return;
+    }
+
+    if (!isValidEmail(cleanEmail)) {
+      setSubmitError('Please provide a valid email address.');
+      return;
+    }
+
+    if (!cleanMessage || cleanMessage.length < 10) {
+      setSubmitError('Please enter a descriptive message (at least 10 characters).');
+      return;
+    }
+
     soundFX.playClick();
     setIsSubmitting(true);
-    setSubmitError(null);
 
     let sent = false;
 
@@ -89,11 +122,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
         body: encode({
           'form-name': 'contact',
           'bot-field': botField,
-          name: formData.name,
-          email: formData.email,
-          projectType: formData.projectType || 'General Inquiry',
-          budget: formData.budget,
-          message: formData.message,
+          name: cleanName,
+          email: cleanEmail,
+          projectType: cleanProjectType,
+          budget: cleanBudget,
+          message: cleanMessage,
         }),
       });
 
@@ -104,7 +137,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
       console.warn('Netlify form submission issue:', err);
     }
 
-    // 2. Direct email delivery via FormSubmit so emails land straight in shahsyedali148@gmail.com
+    // 2. Direct email delivery via FormSubmit with sanitized headers
     try {
       const emailRes = await fetch('https://formsubmit.co/ajax/shahsyedali148@gmail.com', {
         method: 'POST',
@@ -113,15 +146,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          _subject: `[Syed Ali Shah Portfolio] New Project Inquiry from ${formData.name}`,
-          _replyto: formData.email,
+          _subject: `[Syed Ali Shah Portfolio] New Project Inquiry from ${cleanName}`,
+          _replyto: cleanEmail,
           _template: 'table',
           _captcha: 'false',
-          'Client Name': formData.name,
-          'Client Email': formData.email,
-          'Platform / Build Scope': formData.projectType || 'General Inquiry',
-          'Estimated Budget': formData.budget,
-          'Project Requirements': formData.message,
+          'Client Name': cleanName,
+          'Client Email': cleanEmail,
+          'Platform / Build Scope': cleanProjectType,
+          'Estimated Budget': cleanBudget,
+          'Project Requirements': cleanMessage,
           'Submitted From': 'Syed Ali Shah Portfolio (syed-ali-shah-portfolio.netlify.app)',
         }),
       });
@@ -139,6 +172,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
     setIsSubmitting(false);
 
     if (sent) {
+      recordRateLimitAction('contact_form');
       setSubmitted(true);
       soundFX.playSuccess();
       confetti({
@@ -353,6 +387,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                         type="text"
                         name="name"
                         required
+                        maxLength={80}
+                        minLength={2}
+                        autoComplete="name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Alex Morgan"
@@ -368,6 +405,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                         type="email"
                         name="email"
                         required
+                        maxLength={100}
+                        autoComplete="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="alex@company.com"
@@ -383,6 +422,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                     <input
                       type="text"
                       name="projectType"
+                      maxLength={100}
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                       placeholder="e.g. WordPress ACF Pro / Shopify Liquid / Wix Studio / Webflow"
@@ -423,6 +463,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                     <textarea
                       name="message"
                       required
+                      minLength={10}
+                      maxLength={3000}
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -449,7 +491,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 rounded-full bg-[#0A0A0A] text-white hover:bg-neutral-800 dark:bg-[#E0FF00] dark:text-black font-syne text-sm font-extrabold uppercase tracking-wider border border-black/10 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md dark:shadow-[0_0_20px_rgba(224,255,0,0.25)] active:scale-[0.99] disabled:opacity-50"
+                    className="w-full py-4 rounded-full bg-[#0A0A0A] text-white hover:bg-neutral-800 dark:bg-[#E0FF00] dark:text-black dark:hover:bg-[#Eaff29] dark:hover:text-black font-syne text-sm font-extrabold uppercase tracking-wider border border-black/10 dark:border-[#E0FF00]/40 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md dark:shadow-[0_0_20px_rgba(224,255,0,0.25)] dark:hover:shadow-[0_0_30px_rgba(224,255,0,0.55)] active:scale-[0.99] disabled:opacity-50"
                   >
                     {isSubmitting ? (
                       <span>Sending Inquiry...</span>

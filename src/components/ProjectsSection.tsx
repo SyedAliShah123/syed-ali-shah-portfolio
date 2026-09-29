@@ -2,8 +2,11 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { ArrowUpRight, Filter, Layers } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
 import { PlatformCategory, Project } from '../types';
-import { ProjectModal } from './ProjectModal';
 import { soundFX } from '../utils/audio';
+
+const ProjectModal = React.lazy(() =>
+  import('./ProjectModal').then((m) => ({ default: m.ProjectModal }))
+);
 
 const CATEGORIES: { id: PlatformCategory; label: string }[] = [
   { id: 'all', label: 'ALL' },
@@ -107,6 +110,10 @@ export const ProjectsSection: React.FC = () => {
                 <img
                   src={project.image}
                   alt={project.title}
+                  width={600}
+                  height={375}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0 opacity-90 group-hover:opacity-100"
                 />
 
@@ -177,11 +184,15 @@ export const ProjectsSection: React.FC = () => {
         )}
       </div>
 
-      {/* Project Specs Modal */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={handleCloseModal}
-      />
+      {/* Project Specs Modal - Lazy Loaded on Demand */}
+      {selectedProject && (
+        <React.Suspense fallback={null}>
+          <ProjectModal
+            project={selectedProject}
+            onClose={handleCloseModal}
+          />
+        </React.Suspense>
+      )}
     </section>
   );
 };

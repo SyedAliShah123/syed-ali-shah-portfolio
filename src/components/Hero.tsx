@@ -81,11 +81,15 @@ export const Hero: React.FC = () => {
 
           {/* Right Column: Wide transparent cutout portrait, grounded flush with bottom border, no box shadow */}
           <div className="lg:col-span-5 xl:col-span-5 flex justify-center lg:justify-end items-end relative self-end pt-4 lg:pt-0">
-            <div className="relative w-full max-w-[420px] sm:max-w-[480px] md:max-w-[540px] lg:max-w-[580px] xl:max-w-[640px] flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-[420px] sm:max-w-[480px] md:max-w-[540px] lg:max-w-[580px] xl:max-w-[640px] aspect-[925/898] flex justify-center lg:justify-end">
               <img
                 src={syedPortrait}
                 alt="Syed Ali Shah — CMS Developer"
-                className="w-full h-auto max-h-[420px] sm:max-h-[500px] md:max-h-[560px] lg:max-h-[600px] xl:max-h-[660px] object-contain object-bottom select-none block"
+                width={925}
+                height={898}
+                fetchPriority="high"
+                decoding="async"
+                className="w-full h-full max-h-[420px] sm:max-h-[500px] md:max-h-[560px] lg:max-h-[600px] xl:max-h-[660px] object-contain object-bottom select-none block"
               />
             </div>
           </div>
