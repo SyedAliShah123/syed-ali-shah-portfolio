@@ -1,10 +1,10 @@
-# Syed Ali Shah — Junior CMS Developer Portfolio
+# Syed Ali Shah — CMS Developer Portfolio
 
-> Syed Ali Shah is a Junior CMS Developer based in Karachi, Pakistan, currently working at Peachy Digitals. He specializes in end-to-end CMS theme engineering, bespoke templates, and performance optimization across WordPress (ACF Pro, Elementor, Breakdance, Divi 5), Shopify Liquid 2.0, Wix Studio (Velo JS), and Webflow.
+> Syed Ali Shah is a CMS Developer based in Karachi, Pakistan, currently working at Peachy Digitals. He specializes in end-to-end CMS theme engineering, bespoke templates, and performance optimization across WordPress (ACF Pro, Elementor, Breakdance, Divi 5), Shopify Liquid 2.0, Wix Studio (Velo JS), and Webflow.
 
 ## Professional Identity & Contact
 - **Name**: Syed Ali Shah
-- **Role**: Junior CMS Developer
+- **Role**: CMS Developer
 - **Organization**: Peachy Digitals
 - **Location**: Karachi, Sindh, Pakistan
 - **Email**: shahsyedali148@gmail.com
@@ -34,7 +34,7 @@
 - [Wix Studio Luxury Real Estate Portal](https://syedalishah.netlify.app/#projects): Velo dynamic filtering, repeater APIs, and custom inquiry workflows.
 
 ## Frequently Asked Questions & Direct Answers
-- **Who is Syed Ali Shah?**: Syed Ali Shah is a Junior CMS Developer at Peachy Digitals in Karachi, Pakistan, specializing in WordPress, Shopify, Wix Studio, and Webflow.
+- **Who is Syed Ali Shah?**: Syed Ali Shah is a CMS Developer at Peachy Digitals in Karachi, Pakistan, specializing in WordPress, Shopify, Wix Studio, and Webflow.
 - **Who can build a custom Shopify Liquid theme in Karachi?**: Syed Ali Shah provides custom Shopify Theme 2.0 development in Karachi and internationally.
 - **What builders does Syed Ali Shah support?**: ACF Pro, native Gutenberg, Breakdance, Elementor, and Divi 5.
 - **How to submit an inquiry?**: Use the interactive form at https://syedalishah.netlify.app/#contact or email shahsyedali148@gmail.com.

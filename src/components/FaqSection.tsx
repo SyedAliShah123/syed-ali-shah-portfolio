@@ -14,9 +14,9 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     id: 'who-is-syed-ali-shah',
     question: 'Who is Syed Ali Shah and what is his background?',
-    shortAnswer: 'Junior CMS Developer at Peachy Digitals based in Karachi, Pakistan.',
+    shortAnswer: 'CMS Developer at Peachy Digitals based in Karachi, Pakistan.',
     fullAnswer:
-      'Syed Ali Shah is a Junior CMS Developer based in Karachi, Pakistan, currently working at Peachy Digitals. He specializes in end-to-end CMS theme architecture, bespoke template coding, and performance engineering across WordPress (ACF Pro, Elementor, Breakdance, Divi 5), Shopify Liquid 2.0, Wix Studio (Velo), and Webflow.',
+      'Syed Ali Shah is a CMS Developer based in Karachi, Pakistan, currently working at Peachy Digitals. He specializes in end-to-end CMS theme architecture, bespoke template coding, and performance engineering across WordPress (ACF Pro, Elementor, Breakdance, Divi 5), Shopify Liquid 2.0, Wix Studio (Velo), and Webflow.',
     category: 'Profile & Experience',
   },
   {

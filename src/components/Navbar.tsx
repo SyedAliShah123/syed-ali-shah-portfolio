@@ -119,12 +119,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <img
               src={logoBlack}
-              alt="Syed Ali Shah - Junior CMS Developer Logo"
+              alt="Syed Ali Shah - CMS Developer Logo"
               className="h-5 sm:h-6 md:h-7 w-auto object-contain block dark:hidden group-hover:opacity-80 transition-opacity"
             />
             <img
               src={logoYellow}
-              alt="Syed Ali Shah - Junior CMS Developer Logo"
+              alt="Syed Ali Shah - CMS Developer Logo"
               className="h-5 sm:h-6 md:h-7 w-auto object-contain hidden dark:block group-hover:opacity-80 transition-opacity"
             />
           </a>
@@ -245,12 +245,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <div className="flex items-center gap-2">
                   <img
                     src={logoBlack}
-                    alt="Syed Ali Shah - Junior CMS Developer Logo"
+                    alt="Syed Ali Shah - CMS Developer Logo"
                     className="h-8 sm:h-9 w-auto object-contain block dark:hidden"
                   />
                   <img
                     src={logoYellow}
-                    alt="Syed Ali Shah - Junior CMS Developer Logo"
+                    alt="Syed Ali Shah - CMS Developer Logo"
                     className="h-8 sm:h-9 w-auto object-contain hidden dark:block"
                   />
                 </div>

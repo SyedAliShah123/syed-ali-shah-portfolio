@@ -88,7 +88,7 @@ export const Hero: React.FC = () => {
             <div className="relative w-full max-w-[420px] sm:max-w-[480px] md:max-w-[540px] lg:max-w-[580px] xl:max-w-[640px] aspect-[925/898] flex justify-center lg:justify-end">
               <img
                 src={syedPortrait}
-                alt="Syed Ali Shah — Junior CMS Developer"
+                alt="Syed Ali Shah — CMS Developer"
                 width={925}
                 height={898}
                 fetchPriority="high"

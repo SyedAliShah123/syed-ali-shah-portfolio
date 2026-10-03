@@ -57,7 +57,7 @@ export const AboutSection: React.FC = () => {
 
           <div className="lg:col-span-7 space-y-4">
             <p className="text-base sm:text-xl text-neutral-800 dark:text-neutral-200 font-normal leading-relaxed font-sans">
-              I am a <strong className="font-semibold text-black dark:text-white">Junior CMS Developer</strong> based in <strong className="font-semibold text-black dark:text-white">Karachi, Pakistan</strong>, currently engineering high-performance web systems at <strong className="font-semibold text-black dark:text-white">Peachy Digitals</strong>. I specialize in bespoke builds across <strong className="font-semibold text-black dark:text-[#E0FF00]">WordPress (ACF Pro, Elementor, Breakdance, Divi 5)</strong>, <strong className="font-semibold text-black dark:text-[#E0FF00]">Shopify Liquid 2.0</strong>, <strong className="font-semibold text-black dark:text-[#E0FF00]">Wix Studio (Velo)</strong>, and <strong className="font-semibold text-black dark:text-[#E0FF00]">Webflow</strong>.
+              I am a <strong className="font-semibold text-black dark:text-white">CMS Developer</strong> based in <strong className="font-semibold text-black dark:text-white">Karachi, Pakistan</strong>, currently engineering high-performance web systems at <strong className="font-semibold text-black dark:text-white">Peachy Digitals</strong>. I specialize in bespoke builds across <strong className="font-semibold text-black dark:text-[#E0FF00]">WordPress (ACF Pro, Elementor, Breakdance, Divi 5)</strong>, <strong className="font-semibold text-black dark:text-[#E0FF00]">Shopify Liquid 2.0</strong>, <strong className="font-semibold text-black dark:text-[#E0FF00]">Wix Studio (Velo)</strong>, and <strong className="font-semibold text-black dark:text-[#E0FF00]">Webflow</strong>.
             </p>
             <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed font-normal">
               My development philosophy focuses on clean semantic structure, zero page-builder bloat, modular template hooks, and sub-second Core Web Vitals to convert both human visitors and AI-driven queries into real business results.
@@ -73,7 +73,7 @@ export const AboutSection: React.FC = () => {
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-neutral-200 dark:bg-neutral-900 border border-black/15 dark:border-white/10 shadow-xl flex items-end justify-center">
                 <img
                   src={syedPortrait}
-                  alt="Syed Ali Shah — Junior CMS Developer at Peachy Digitals"
+                  alt="Syed Ali Shah — CMS Developer at Peachy Digitals"
                   width={819}
                   height={1024}
                   loading="lazy"
@@ -87,7 +87,7 @@ export const AboutSection: React.FC = () => {
                 {/* Inset Title on image */}
                 <div className="absolute bottom-5 left-5 right-5 text-white z-10 space-y-0.5">
                   <div className="text-[11px] font-mono tracking-widest uppercase text-neutral-300 dark:text-[#E0FF00] font-semibold">
-                    Junior CMS Developer @ Peachy Digitals
+                    CMS Developer @ Peachy Digitals
                   </div>
                   <div className="font-syne text-xl font-bold tracking-tight text-white">
                     Syed Ali Shah

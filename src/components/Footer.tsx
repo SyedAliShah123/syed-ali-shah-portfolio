@@ -26,12 +26,12 @@ export const Footer: React.FC = () => {
           >
             <img
               src={logoBlack}
-              alt="Syed Ali Shah - Junior CMS Developer Logo"
+              alt="Syed Ali Shah - CMS Developer Logo"
               className="h-4 sm:h-5 w-auto object-contain block dark:hidden"
             />
             <img
               src={logoYellow}
-              alt="Syed Ali Shah - Junior CMS Developer Logo"
+              alt="Syed Ali Shah - CMS Developer Logo"
               className="h-4 sm:h-5 w-auto object-contain hidden dark:block"
             />
           </a>

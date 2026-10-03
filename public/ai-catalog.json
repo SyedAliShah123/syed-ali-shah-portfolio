@@ -2,7 +2,7 @@
   "$schema": "https://agenticresourcediscovery.org/schemas/v1/ard.json",
   "specVersion": "1.0",
   "host": {
-    "displayName": "Syed Ali Shah — Junior CMS Developer Portfolio",
+    "displayName": "Syed Ali Shah — CMS Developer Portfolio",
     "identifier": "https://syedalishah.netlify.app"
   },
   "entries": [
@@ -25,7 +25,7 @@
         "Who can build a custom Shopify Liquid theme in Karachi?",
         "WordPress ACF Pro and Gutenberg developer",
         "Wix Studio Velo API developer",
-        "Junior CMS Developer Syed Ali Shah"
+        "CMS Developer Syed Ali Shah"
       ]
     },
     {
