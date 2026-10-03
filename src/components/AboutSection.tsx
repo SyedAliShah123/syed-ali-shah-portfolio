@@ -73,7 +73,7 @@ export const AboutSection: React.FC = () => {
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-neutral-200 dark:bg-neutral-900 border border-black/15 dark:border-white/10 shadow-xl flex items-end justify-center">
                 <img
                   src={syedPortrait}
-                  alt="Syed Ali Shah — CMS Developer"
+                  alt="Syed Ali Shah — Junior CMS Developer at Peachy Digitals"
                   width={819}
                   height={1024}
                   loading="lazy"
@@ -128,6 +128,24 @@ export const AboutSection: React.FC = () => {
                   </div>
                 );
               })}
+            </div>
+
+            {/* Strategic Internal Links */}
+            <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono">
+              <span className="text-neutral-500">Explore next:</span>
+              <a
+                href="#projects"
+                className="font-bold text-[#0A0A0A] dark:text-[#E0FF00] hover:underline inline-flex items-center gap-1"
+              >
+                View Selected Works →
+              </a>
+              <span className="text-neutral-400">•</span>
+              <a
+                href="#contact"
+                className="font-bold text-[#0A0A0A] dark:text-[#E0FF00] hover:underline inline-flex items-center gap-1"
+              >
+                Get in Touch →
+              </a>
             </div>
           </div>
         </div>

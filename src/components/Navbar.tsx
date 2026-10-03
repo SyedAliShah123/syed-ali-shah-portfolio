@@ -107,32 +107,40 @@ export const Navbar: React.FC<NavbarProps> = ({
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-10 lg:px-12 flex items-center justify-between">
           {/* Logo */}
-          <button
+          <a
             id="nav-logo"
-            onClick={() => scrollTo('hero')}
+            href="#hero"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo('hero');
+            }}
             aria-label="Syed Ali Shah - Home"
             className="group flex items-center focus:outline-none cursor-pointer"
           >
             <img
               src={logoBlack}
-              alt="Syed Ali Shah Logo"
+              alt="Syed Ali Shah - Junior CMS Developer Logo"
               className="h-5 sm:h-6 md:h-7 w-auto object-contain block dark:hidden group-hover:opacity-80 transition-opacity"
             />
             <img
               src={logoYellow}
-              alt="Syed Ali Shah Logo"
+              alt="Syed Ali Shah - Junior CMS Developer Logo"
               className="h-5 sm:h-6 md:h-7 w-auto object-contain hidden dark:block group-hover:opacity-80 transition-opacity"
             />
-          </button>
+          </a>
 
           {/* Desktop Navigation Links */}
           <nav className="relative hidden md:flex items-center gap-1 p-1.5 rounded-full bg-white/80 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-md shadow-xs">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.id;
               return (
-                <button
+                <a
                   key={item.id}
-                  onClick={() => scrollTo(item.id)}
+                  href={`#${item.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo(item.id);
+                  }}
                   onMouseEnter={() => soundFX.playPop()}
                   className={`relative px-4 py-1.5 rounded-full text-[11px] uppercase tracking-[0.15em] font-bold transition-colors duration-200 cursor-pointer ${
                     isActive
@@ -148,7 +156,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     />
                   )}
                   <span className="relative z-10">{item.label}</span>
-                </button>
+                </a>
               );
             })}
           </nav>
@@ -171,14 +179,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
 
             {/* Clear Primary CTA Button */}
-            <button
+            <a
               id="nav-hire-btn"
-              onClick={() => scrollTo('contact')}
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('contact');
+              }}
               className="hidden sm:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#0A0A0A] text-white hover:bg-neutral-800 dark:bg-[#E0FF00] dark:text-black dark:hover:bg-[#E0FF00]/90 text-xs font-bold font-syne tracking-wider transition-all cursor-pointer shadow-xs active:scale-95"
             >
               <span>LET'S TALK</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
-            </button>
+            </a>
 
             {/* Mobile Hamburger Button */}
             <button
@@ -233,12 +245,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <div className="flex items-center gap-2">
                   <img
                     src={logoBlack}
-                    alt="Syed Ali Shah"
+                    alt="Syed Ali Shah - Junior CMS Developer Logo"
                     className="h-8 sm:h-9 w-auto object-contain block dark:hidden"
                   />
                   <img
                     src={logoYellow}
-                    alt="Syed Ali Shah"
+                    alt="Syed Ali Shah - Junior CMS Developer Logo"
                     className="h-8 sm:h-9 w-auto object-contain hidden dark:block"
                   />
                 </div>
@@ -248,26 +260,34 @@ export const Navbar: React.FC<NavbarProps> = ({
                     Navigation
                   </div>
                   {NAV_ITEMS.map((item, idx) => (
-                    <motion.button
+                    <motion.a
                       key={item.id}
+                      href={`#${item.id}`}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.04 * idx, duration: 0.2 }}
-                      onClick={() => scrollTo(item.id)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollTo(item.id);
+                      }}
                       className="block w-full text-left font-syne text-base sm:text-lg font-bold uppercase tracking-wider text-neutral-900 dark:text-white hover:text-black/60 dark:hover:text-[#E0FF00] active:translate-x-1.5 transition-all cursor-pointer"
                     >
                       {item.label}
-                    </motion.button>
+                    </motion.a>
                   ))}
-                  <motion.button
+                  <motion.a
+                    href="#contact"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.04 * NAV_ITEMS.length, duration: 0.2 }}
-                    onClick={() => scrollTo('contact')}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollTo('contact');
+                    }}
                     className="block w-full text-left font-syne text-base sm:text-lg font-bold uppercase tracking-wider text-neutral-900 dark:text-white hover:text-black/60 dark:hover:text-[#E0FF00] active:translate-x-1.5 transition-all cursor-pointer"
                   >
                     CONTACT
-                  </motion.button>
+                  </motion.a>
                   <motion.a
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}

@@ -53,15 +53,19 @@ export const Hero: React.FC = () => {
 
             {/* Two CTA buttons: 2 rows on mobile, side-by-side on desktop */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1 w-full max-w-md">
-              <button
+              <a
                 id="hero-primary-cta"
-                onClick={scrollToProjects}
+                href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToProjects();
+                }}
                 onMouseEnter={() => soundFX.playPop()}
                 className="w-full sm:w-auto px-6 py-3.5 sm:py-3.5 rounded-full bg-[#0A0A0A] text-white hover:bg-neutral-800 dark:bg-[#E0FF00] dark:text-black dark:hover:bg-[#E0FF00]/90 font-syne text-xs sm:text-xs font-extrabold uppercase tracking-wider transition-all duration-200 inline-flex items-center justify-center gap-2 shadow-xs active:scale-95 cursor-pointer whitespace-nowrap"
               >
                 <span>Explore Projects</span>
                 <ArrowDownRight className="w-4 h-4" />
-              </button>
+              </a>
 
               <a
                 id="hero-secondary-cta"
@@ -84,7 +88,7 @@ export const Hero: React.FC = () => {
             <div className="relative w-full max-w-[420px] sm:max-w-[480px] md:max-w-[540px] lg:max-w-[580px] xl:max-w-[640px] aspect-[925/898] flex justify-center lg:justify-end">
               <img
                 src={syedPortrait}
-                alt="Syed Ali Shah — CMS Developer"
+                alt="Syed Ali Shah — Junior CMS Developer"
                 width={925}
                 height={898}
                 fetchPriority="high"

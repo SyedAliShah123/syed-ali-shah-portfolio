@@ -108,7 +108,7 @@ export const ProjectsSection: React.FC = () => {
 
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={`${project.title} - ${project.platform} CMS Project by Syed Ali Shah`}
                   width={600}
                   height={375}
                   loading="lazy"
@@ -174,6 +174,24 @@ export const ProjectsSection: React.FC = () => {
               </div>
             </article>
           ))}
+        </div>
+
+        {/* Strategic Internal Links */}
+        <div className="pt-8 flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs font-mono">
+          <span className="text-neutral-500">Looking for a custom build?</span>
+          <a
+            href="#services"
+            className="font-bold text-[#0A0A0A] dark:text-[#E0FF00] hover:underline inline-flex items-center gap-1"
+          >
+            Explore CMS Services →
+          </a>
+          <span className="text-neutral-400">•</span>
+          <a
+            href="#contact"
+            className="font-bold text-[#0A0A0A] dark:text-[#E0FF00] hover:underline inline-flex items-center gap-1"
+          >
+            Start a Project Inquiry →
+          </a>
         </div>
 
         {/* Empty state fallback */}

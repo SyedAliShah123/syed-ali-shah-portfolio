@@ -83,7 +83,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         <div className="relative aspect-video rounded-2xl overflow-hidden border border-black/15 dark:border-white/10 bg-neutral-100 dark:bg-neutral-900">
           <img
             src={project.image}
-            alt={project.title}
+            alt={`${project.title} - ${project.platform} CMS Detailed Case Study Preview`}
             className="w-full h-full object-cover"
           />
           <div className="absolute bottom-3 right-3 px-3 py-1 rounded-lg bg-black/85 backdrop-blur-sm text-white dark:text-[#E0FF00] text-xs font-mono border border-white/15">

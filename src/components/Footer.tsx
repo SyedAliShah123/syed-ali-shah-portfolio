@@ -15,30 +15,44 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left: Logo and CMS Developer */}
         <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-4">
-          <button
-            onClick={scrollToTop}
-            aria-label="Syed Ali Shah - Top"
+          <a
+            href="#hero"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToTop();
+            }}
+            aria-label="Syed Ali Shah - Back to top"
             className="flex items-center hover:opacity-80 transition-opacity cursor-pointer"
           >
             <img
               src={logoBlack}
-              alt="Syed Ali Shah Logo"
+              alt="Syed Ali Shah - Junior CMS Developer Logo"
               className="h-4 sm:h-5 w-auto object-contain block dark:hidden"
             />
             <img
               src={logoYellow}
-              alt="Syed Ali Shah Logo"
+              alt="Syed Ali Shah - Junior CMS Developer Logo"
               className="h-4 sm:h-5 w-auto object-contain hidden dark:block"
             />
-          </button>
+          </a>
           <span className="text-black/30 dark:text-white/30">•</span>
           <span className="font-semibold text-neutral-800 dark:text-neutral-200">CMS DEVELOPER</span>
         </div>
 
-        {/* Center: 2026 Copyright centered */}
-        <p className="text-neutral-600 dark:text-neutral-400 text-center font-medium">
-          © 2026 SYED ALI SHAH — ALL RIGHTS RESERVED
-        </p>
+        {/* Center: Quick Internal Links & Copyright */}
+        <div className="flex flex-col items-center gap-2 text-center">
+          <nav aria-label="Footer Navigation" className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[11px] font-mono">
+            <a href="#capabilities" className="hover:text-black dark:hover:text-[#E0FF00] transition-colors">Capabilities</a>
+            <a href="#about" className="hover:text-black dark:hover:text-[#E0FF00] transition-colors">About</a>
+            <a href="#projects" className="hover:text-black dark:hover:text-[#E0FF00] transition-colors">Projects</a>
+            <a href="#services" className="hover:text-black dark:hover:text-[#E0FF00] transition-colors">Services</a>
+            <a href="#faq" className="hover:text-black dark:hover:text-[#E0FF00] transition-colors">FAQ</a>
+            <a href="#contact" className="hover:text-black dark:hover:text-[#E0FF00] transition-colors">Contact</a>
+          </nav>
+          <p className="text-neutral-600 dark:text-neutral-400 font-medium text-[11px]">
+            © 2026 SYED ALI SHAH — ALL RIGHTS RESERVED
+          </p>
+        </div>
 
         {/* Right / Centered on Mobile: Back to Top Button unhidden by FAB */}
         <div className="flex items-center justify-center md:justify-end">
